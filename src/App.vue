@@ -174,6 +174,14 @@ body {
 </style>
 
 <style scoped>
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+}
 #header {
   height: 100%;
   width: 100%;
@@ -250,7 +258,7 @@ body {
   margin-top: .5rem;
   width: 50%;
   min-height: 0%;
-  min-width: 45%;
+  min-width: 55%;
 }
 
 .select {

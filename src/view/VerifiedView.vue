@@ -76,20 +76,18 @@ async function downloadPDF (): Promise<void> {
     </div>-->
     <br>
     <div class="id">
-        <div class="left">
-            <text class="titleKey">{{ extractTextFromJson(text.verified.electionId, props.language) }}</text>
-            <br>
-            <text class="titleKey">{{ extractTextFromJson(text.verified.voterId, props.language) }}</text>
-            <!-- br> - The total number of ballots per voter was deemed more confusing than helpful, hence we rather omit it. -
-            <text class="titleKey">{{ extractTextFromJson(text.verified.label, props.language) }}</text -->
-        </div>
-        <div class="right">
-            <text class="data">{{ props.loginResponse.electionId }}</text>
-            <br>
-            <text class="data">{{ props.loginResponse.ballotVoterId }}</text>
-            <!-- br>
-            <text class="data">{{ props.loginResponse.publicLabel }}</text -->
-        </div>
+        <text class="titleKey">{{ extractTextFromJson(text.verified.electionId, props.language) }}</text>
+        <br>
+        <text class="data">{{ props.loginResponse.electionId }}</text>
+        <br>
+        <text class="titleKey">{{ extractTextFromJson(text.verified.voterId, props.language) }}</text>
+        <!-- br> - The total number of ballots per voter was deemed more confusing than helpful, hence we rather omit it. -
+        <text class="titleKey">{{ extractTextFromJson(text.verified.label, props.language) }}</text -->
+
+        <br>
+        <text class="data">{{ props.loginResponse.ballotVoterId }}</text>
+        <!-- br>
+        <text class="data">{{ props.loginResponse.publicLabel }}</text -->
     </div>
     <div class="above">
         <div class="contentAbove" v-if="props.loginResponse.contentAbove">
@@ -134,16 +132,7 @@ async function downloadPDF (): Promise<void> {
 }
 
 .id {
-  display: flex;
-  width: 100%;
-  padding-left: 20%
-}
-
-.left {
-  flex: 18%;
-}
-.right {
-  flex: 82%;
+  display: inline-block;
 }
 
 .titleKey {
@@ -153,7 +142,6 @@ async function downloadPDF (): Promise<void> {
 .data {
   margin-top: -4%;
   margin-bottom: -2%;
-  width: 50%;
 }
 
 .above {

@@ -36,7 +36,7 @@ function onInvalidCheck() {
 <template>
     <div id="title">
         <div id="left">
-            <h4>{{ props.ballot.id }}</h4>
+            <!--<h4>{{ props.ballot.id }}</h4>-->
         </div>
         <div id="center">
             <h2>{{ extractText(props.ballot.title, props.language) }}</h2>
@@ -104,7 +104,8 @@ function onInvalidCheck() {
 }
 
 .questions {
-  margin-left:10pt;
+  margin-left:5pt;
+  margin-right:5pt;
   margin-top: 20pt;
   margin-bottom: 10pt;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
