@@ -28,6 +28,9 @@ onMounted(() => {
   }
   rendered.value = true
 })
+function onInvalidCheck() {
+  alert(extractTextFromJson(text.verified.onChangePopup, props.language));
+}
 </script>
 
 <template>
@@ -41,7 +44,9 @@ onMounted(() => {
         <div id="right"></div>
     </div>
     <div class="ext" v-if="props.ballot.externalIdentification">
-        <h3>{{ props.ballot.externalIdentification}}</h3>
+        <!-- Do not show sheet1, sheet2 etc.
+      <h3>{{ props.ballot.externalIdentification}}</h3>-->
+    <br/>
     </div>
     <div class="contentAbove" v-if="ballot.contentAbove">
         <ContentView :content="ballot.contentAbove" :language="props.language"/>
@@ -57,7 +62,7 @@ onMounted(() => {
     </div>
   </div>
     <div class="invalid" v-if="ballot.showInvalidOption">
-        <input type="checkbox" name="check" :checked="props.result[0]==1"/>
+        <input type="checkbox" name="check" :checked="props.result[0]==1" v-on:click="onInvalidCheck"/>
         <label for="check">{{ extractTextFromJson(text.ballot.invalidOption, props.language) }}</label>
     </div>
     <div class="abstain" v-if="ballot.showAbstainOption">

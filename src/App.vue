@@ -33,7 +33,7 @@ onMounted(async () => {
   console.log('Fingerprint: ', env.fingerprint)
   const urlParams = new URLSearchParams(window.location.search)
   languages = ['DE', 'EN', undefined]
-  language.value = 'DE'
+  language.value = 'EN'
   await loadData()
   if (!urlParams.has('c') || !urlParams.has('vid') || !urlParams.has('nonce')) {
     error.value = new ResponseBeanError(ErrorType.PARAMS)
@@ -109,6 +109,7 @@ async function reset (): Promise<void> {
     <div id="header">
       <div id="left">
         <a href="https://www.kit.edu/english/"><img class="kitlogo" src="./view/elements/kit_en.svg"/></a>
+        <a href="https://kastel-labs.de/"><img class="kastellogo" src="./view/elements/kastel.png"/></a>
       </div>
       <div id="center">
         <h1>{{ extractTextFromJson(text.header.title, language) }}</h1>
@@ -119,42 +120,58 @@ async function reset (): Promise<void> {
             <option v-for="lang in languages"
               :value="lang"
               :key="lang"
-              :id="lang">{{ lang ? lang : "Default" }}</option>
+              :id="lang">{{ lang ? lang : "EN" }}</option>
           </select>
         </div>
         <h2 v-if="title!=undefined">{{ extractTextFromJson(text.header.election, language) }}<em>{{ extractText(title, language)}}</em></h2>
-      </div>
-      <div id="right">
-        <a href="https://kastel-labs.de/"><img class="kastellogo" src="./view/elements/kastel.png"/></a>
       </div>
     </div>
     <div class="main">
       <StartPage
       v-if="state == State.LOGIN"
-      :language="language" :voterId="voterId!" @login="(password) => login(password)"/>
+        :language="language" :voterId="voterId!" @login="(password) => login(password)"
+      />
       <VerifiedView
       v-else-if="state==State.VERIFIED"
       :loginResponse="loginResponse!"
       :result="result!"
       :language="language"
-      :receipt-text="receiptText!"/>
+        :receipt-text="receiptText!"
+      />
       <ErrorView
       v-else-if="state==State.ERROR"
       :errorType="error.errorType"
       :message="error.message"
       :title="(title as I18n<string>)"
       :language="language"
-      @reset="reset"/>
+        @reset="reset"
+      />
       <div v-else class="loading">
         <img src="./view/elements/spinner-1s-200px.svg"/>
       </div>
     </div>
     <div id="footer">
-      <a href="https://github.com/kastel-security/polyas-core3-second-device-verification" id="toollink">Polyas-Verifier</a> {{ extractTextFromJson(text.footer.acknowledgement, language) }}
+      <a href="https://github.com/kastel-security/polyas-core3-second-device-verification" id="toollink">
+        Individual verifiability tool
+      </a> 
+      {{ extractTextFromJson(text.footer.acknowledgement, language) }}
+      <span>
+        <a href="https://formal.kastel.kit.edu/~beckert/" target="_blank" rel="noopener noreferrer">Prof. Dr. Bernhard Beckert</a>, 
+        <a href="https://crypto.iti.kit.edu/head_of_institute.php" target="_blank" rel="noopener noreferrer">Prof. Dr. Jörn Müller-Quade</a>,
+        <a href="https://secuso.aifb.kit.edu/Team_Volkamer.php" target="_blank" rel="noopener noreferrer">Prof. Dr. Melanie Volkamer</a> & 
+        <a href="https://spiecker.jura.uni-koeln.de/prof-dr-indra-spiecker" target="_blank" rel="noopener noreferrer">Prof. Dr. Indra Spiecker</a>
+        </span><span><a href="https://github.com/kastel-security/polyas-core3-second-device-verification" id="toollink">Polyas-Verifier</a>
       &copy; 2024&puncsp;<a href="mailto:udqps@student.kit.edu">Christoph Niederbudde</a>, <a href="https://formal.kastel.kit.edu/~kirsten/">Michael Kirsten</a>.
+      </span>
     </div>
   </div>
 </template>
+
+<style>
+body {
+  margin: 0;
+}
+</style>
 
 <style scoped>
 #header {
@@ -165,15 +182,20 @@ async function reset (): Promise<void> {
 }
 
 #footer {
-  width: 92%;
-  text-align: justify;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-inline-start: 7%;
-  background-color: #F2F2F2;
   bottom: 0;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 100;
+  text-align: center;
+  padding: 15px 5%;
+  background-color: #199865;
+  color: white;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  position: relative;
+
 }
 
 #toollink {
@@ -181,6 +203,18 @@ async function reset (): Promise<void> {
   font-size: 18px;
   font-weight: 600;
   font-variant: small-caps;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: white;
+  text-decoration: none;
+}
+
+#footer span {
+  display: block;
+  text-align: center;
+}
+
+#footer a {
+  color: white;
 }
 
 #left {
@@ -206,15 +240,15 @@ async function reset (): Promise<void> {
 .kitlogo {
   margin-left: 32.98%;
   margin-top: 1.22rem;
-  width: 35.85%;
+  width: 50.85%;
   min-height: 0%;
   min-width: 35%;
 }
 
 .kastellogo {
-  margin-right: 30%;
+  margin-left: 30%;
   margin-top: .5rem;
-  width: 45%;
+  width: 50%;
   min-height: 0%;
   min-width: 45%;
 }
@@ -256,5 +290,6 @@ async function reset (): Promise<void> {
 .loading {
   text-align: center;
 }
+
 </style>
 ./main/error./main/communication./main/constants./main/verifictiontool

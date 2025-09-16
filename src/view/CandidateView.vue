@@ -4,6 +4,7 @@ import { Content, type Language } from '../classes/basics'
 import ContentView from './ContentView.vue'
 import { type CandidateSpec, type ColumnProperties } from '../classes/ballot'
 import text from './elements/text.json'
+import { extractTextFromJson } from './basic'
 
 const props = defineProps<{
   candidate: CandidateSpec
@@ -29,12 +30,17 @@ onMounted(() => {
     }
   }
 })
+
+function onCandidateCheck() {
+  alert(extractTextFromJson(text.verified.onChangePopup, props.language));
+}
+
 </script>
 
 <template>
     <tr v-if="props.result">
         <td>
-            <input v-if="props.candidate.maxVotes==1" type="checkbox" :checked="props.result[0]==1"/>
+            <input v-if="props.candidate.maxVotes==1" type="checkbox" :checked="props.result[0]==1" v-on:click="onCandidateCheck"/>
             <input v-else type="text" value="props.result[0]"/>
         </td>
         <td v-for="entry in columns"

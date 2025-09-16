@@ -1,8 +1,8 @@
 {
     "header": {
         "title": {
-            "default": "Polyas-Verifier",
-            "value": { "DE": "Polyas-Verifier" }
+            "default": "Website to check your ballot",
+            "value": { "DE": "Webseit zur Stimmüberprüfung" }
         },
         "election": {
             "default": "Election Title: ",
@@ -15,43 +15,63 @@
     },
     "footer": {
         "acknowledgement": {
-            "default": "by KASTEL Security Research Labs at Karlsruhe Institute of Technology (KIT)",
-            "value": { "DE": "von den KASTEL-Sicherheitsforschungslaboren am Karlsruher Institut für Technologie (KIT)" }
+            "default": "- a cooperation of the chairs of",
+            "value": { "DE": "- eine Kooperation der Lehrstühle von" }
         }
     },
     "login": {
-        "text": {
-            "default": "Please enter the time-based one-time password that is currently displayed to you in step 5 of the voting process below your pre-filled anonymized voter\u00a0Id.",
+        "textID": {
+            "default": "Please first enter your voter ID.",
             "value": {
-                "DE": "Bitte geben Sie unter Ihrer vorausgefüllten anonymisierten Wahl\u2011Id das zeitbasierte Einmalpasswort ein, welches Ihnen aktuell in Schritt 5 der Stimmabgabe angezeigt wird."
+                "DE": "Bitte geben Sie zunächst Ihre Wähler:innen-ID ein."
+            }
+        },
+        "textPW": {
+            "default": "Please enter the time-based one-time PIN that is currently displayed on the last page of the online voting system.",
+            "value": {
+                "DE": "Bitte geben Sie die zeitbasierte Einmal-PIN ein, welche Ihnen aktuell auf der letzten Seite des Online-Wahlsystems angezeigt wird."
             }
         },
         "loginReq": {
-            "default": "Current one-time password:",
-            "value": { "DE": "Aktuelles Einmalpasswort:" }
+            "default": "Current one-time PIN:",
+            "value": { "DE": "Aktuelle Einmal-PIN:" }
         },
         "explanation": {
             "default": "Click on \"Login and verify ballot\" in order to verify the correctness of your ballot submission. In the next step, you will be shown an image of your ballot(s) in the ballot box.",
             "value": { "DE": "Klicken Sie auf \"Anmelden und Stimmzettel verifizieren\", um die Korrektheit Ihrer Stimmabgabe zu überprüfen. Im nächsten Schritt wird Ihnen ein Abbild Ihres Stimmzettels bzw. Ihrer Stimmzettel in der Wahlurne angezeigt." }
         },
         "loginButton": {
-            "default": "Login and verify ballot",
-            "value": { "DE": "Anmelden und Stimmzettel verifizieren" }
+            "default": "Check one-time PIN",
+            "value": { "DE": "Einmal-PIN überprüfen" }
         },
         "voterId": {
-            "default": "Anonymized Voter\u00a0Id: ",
-            "value": { "DE": "Anonymisierte Wahl\u2011Id: " }
+            "default": "Voter ID: ",
+            "value": { "DE": "Wähler:innen-ID: " }
         }
     },
+    "IDcheck": {
+        "checkplease":{
+            "default": "On the next page you will be presented an image of the ballot for the following voter ID. Please check if the following voter ID matches your personal voter ID.",
+            "value": {
+               "DE": "Auf der folgenden Seite wird Ihnen ein Abbild des Stimmzettels für folgende Wähler:innen-ID angezeigt. Bitte prüfen Sie, ob die folgende Wähler:innen-ID mit Ihrer persönlichen Wähler:innen-ID übereinstimmt."
+            }
+            }
+    },
     "verified": {
+        "Pin_checked":{
+            "default": "Your submitted one-time PIN was checked successfully. Please check whether the image of your ballot below contains your intended choice.",
+            "value": {
+                "DE": "Die Überprüfung Ihrer Einmal-Pin war erfolgreich. Bitte überprüfen Sie nun, ob das unten dargestellte Abbild Ihres Stimmzettels Ihre getroffene Wahl enthält."
+            } 
+        },
         "verified": {
             "default": "Your ballot has been successfully checked.",
             "value": { "DE": "Ihr Stimmzettel wurde erfolgreich überprüft." }
         },
         "explanation": {
-            "default": "Please note that the following is an image of your ballot(s) in the ballot box. You can now no longer change your submitted ballot. However, you can modify the following image in order to hide your vote from possible observers. But this modification will neither affect your submitted ballot nor its generated ballot receipt.",
+            "default": "Your submitted one-time PIN was checked successfully. Please check whether the image of your ballot below contains your intended choice. Please note that the following is an image of your ballot in the digital ballot box. You can now no longer change your submitted ballot.",
             "value": {
-                "DE": "Bitte beachten Sie, dass es sich nachfolgend um ein Abbild Ihres Stimmzettels bzw. Ihrer Stimmzettel in der Wahlurne handelt. Eine Änderung Ihrer Stimmabgabe ist nun nicht mehr möglich. Allerdings können Sie das folgende Abbild verändern, um Ihre Stimmabgabe vor möglichen Beobachtenden zu verbergen. Diese Veränderung wird jedoch weder Ihre abgegebenen Stimmzettel in der Wahlurne noch die generierte Wahl-Quittung Ihrer Stimmabgabe beeinflussen."
+                "DE": "Die Überprüfung Ihrer Einmal-Pin war erfolgreich. Bitte überprüfen Sie nun, ob das unten dargestellte Abbild Ihres Stimmzettels Ihre getroffene Wahl enthält. Bitte beachten Sie, dass es sich nachfolgend um ein Abbild Ihres Stimmzettels in der Wahlurne handelt. Eine Änderung Ihrer Stimmabgabe ist nun nicht mehr möglich."
             }
         },
         "verifiedFor": {
@@ -59,32 +79,38 @@
             "value": { "DE": "Verifiziert für: " }
         },
         "electionId": {
-            "default": "Project\u00a0Id: ",
-            "value": { "DE": "Projekt\u2011Id: " }
+            "default": "Election Hash: ",
+            "value": { "DE": "Wahl-Hash: " }
         },
         "voterId": {
-            "default": "Voter\u00a0Id: ",
-            "value": { "DE": "Wahl\u2011Id: " }
+            "default": "Voter Credential: ",
+            "value": { "DE": "Wähler:innen-Referenz: " }
         },
         "label": {
             "default": "Ballot sheet number(s): ",
             "value": { "DE": "Stimmzettelnummer(n): " }
         },
         "downloadText": {
-            "default": "Here, you can again download the ballot receipt submission for an external screening process, e.g., by means of a universal verification tool for checking whether your ballot is correctly included in the tally.",
+            "default": "Here, you can again download the receipt of your ballot submission for an external screening process, e.g., by means of a universal verification tool for checking whether your ballot is correctly included in the tally.",
             "value": {
-                "DE": "Sie können hier die Wahl-Quittung Ihrer Stimmabgabe für ein externes Prüfverfahren, beispielsweise mittels eines universellen Verifizierungswerkzeugs zur Prüfung ob Ihre Stimmabgabe korrekt in der Auszählung berücksichtigt ist, erneut herunterladen."
+                "DE": "Sie können hier die Bestätigung Ihrer Stimmabgabe für ein externes Prüfverfahren, beispielsweise mittels eines universellen Verifizierungswerkzeugs zur Prüfung ob Ihre Stimmabgabe korrekt in der Auszählung berücksichtigt ist, erneut herunterladen."
             }
         },
         "download": {
-            "default": "Download ballot receipt of the submission",
-            "value": { "DE": "Wahl-Quittung der Stimmabgabe herunterladen" }
+            "default": "Download receipt of the ballot submission",
+            "value": { "DE": "Bestätigung der Stimmabgabe herunterladen" }
+        },
+        "onChangePopup": {
+            "default": "You can no longer change your vote. The possibility to modify the image of your ballot was implemented to not allow proving one's vote against third parties. If this image would not be modifiable a screenshot of this image of your ballot could be used to prove how you voted.",
+            "value": {
+                "DE": "Sie können Ihre Stimmabgabe nichtmehr ändern. Die Änderung wird nur lokal bei Ihnen angezeigt und hat keinen Einfluss auf Ihren abgegebenen Stimmzettel."
+            }
         }
 
     },
     "ballot": {
         "invalidOption": {
-            "default": "Value your vote as invalid",
+            "default": "Mark as invalid",
             "value": { "DE": "Ungültig wählen" }
         },
         "abstainOption": {
@@ -131,9 +157,9 @@
             }
         },
         "ack": {
-            "default": "The ballot receipt of the submission sent by the election server is invalid. This could be caused by a third party attack.",
+            "default": "The receipt of the ballot submission sent by the election server is invalid. This could be caused by a third party attack.",
             "value": {
-                "DE": "Die Wahl-Quittung des Stimmzettels durch den Wahlserver ist ungültig. Dies könnte durch einen Angriff einer dritten Partei verursacht worden sein."
+                "DE": "Die Bestätigung des Stimmzettels durch den Wahlserver ist ungültig. Dies könnte durch einen Angriff einer dritten Partei verursacht worden sein."
             }
         },
         "decrypt": {
@@ -163,9 +189,9 @@
             "value": { "DE": "Der dekodierte Stimmzettel passt nicht zum vom Stimmzettelbogen vorgegebenen Format." }
         },
         "vid": {
-            "default": "The anonymized voter\u00a0Id from the ballot does not match with the anonymized voter\u00a0Id which is passed with the entered URL. This could be caused by a third party attack.",
+            "default": "The voter ID from the ballot does not match with the voter ID which is passed with the entered URL. This could be caused by a third party attack.",
             "value": {
-                "DE": "Die anonymisierte Wahl\u2011Id des Stimmzettels stimmt nicht mit der durch die eingegebene URL übermittelten anonymisierten Wahl\u2011Id überein. Dies könnte durch einen Angriff einer dritten Partei verursacht worden sein."
+                "DE": "Die Wähler:innen-ID des Stimmzettels stimmt nicht mit der durch die eingegebene URL übermittelten Wähler:innen-ID überein. Dies könnte durch einen Angriff einer dritten Partei verursacht worden sein."
             }
         },
         "reset": {

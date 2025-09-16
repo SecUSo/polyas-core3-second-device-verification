@@ -71,9 +71,9 @@ async function downloadPDF (): Promise<void> {
     <div class="logo" v-if="props.loginResponse.logo">
         <img class="content" :src="getImgUrl(props.loginResponse.logo!)" ref="test"/>
     </div>
-    <div class="verifiedText">
+    <!--<div class="verifiedText">
         <h1 class="verified"><span class="check">&#x2705;</span> {{ extractTextFromJson(text.verified.verified, props.language) }}</h1>
-    </div>
+    </div>-->
     <br>
     <div class="id">
         <div class="left">

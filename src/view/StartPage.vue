@@ -3,7 +3,7 @@ import { type Language } from '../classes/basics'
 import * as text from './elements/text.json'
 import { extractTextFromJson } from './basic'
 const passwordValue: string = ''
-
+let voterID: string = ''
 const props = defineProps<{
   language: Language | undefined
   voterId: string
@@ -12,17 +12,21 @@ const props = defineProps<{
 
 <template>
     <div class="start">
-        <div class="explanation">{{ extractTextFromJson(text.login.text, props.language) }}</div>
-        <h4>{{ extractTextFromJson(text.login.voterId, props.language) }}</h4>
-        <div class="voterid">{{ props.voterId }}</div>
+    <div class="explanation">{{ extractTextFromJson(text.login.textID, props.language) }}</div>
+    <p><b>{{ extractTextFromJson(text.login.voterId, props.language) }}</b></p>
+    <div class="password">
+      <input id="enter" class="input" maxlength="8" autocomplete="off" v-model="voterID"/>
+    </div>
+    <div class="explanation">{{ extractTextFromJson(text.login.textPW, props.language) }}</div>
         <h4>{{ extractTextFromJson(text.login.loginReq, props.language) }}</h4>
-        <form @submit.prevent="$emit('login', passwordValue)">
+    <form @submit.prevent="$emit('login', passwordValue, voterID)">
             <div class="password">
-                <input id="enter" class="input" maxlength="6" autocomplete="new-password one-time-code" :type="passwordFieldType" v-model="passwordValue" />
-                <i :class="togglerIcon" id="eye" @click="switchVisibility"></i>
+        <input id="enter" class="input" maxlength="6" autocomplete="new-password one-time-code"
+          :type="passwordFieldType" v-model="passwordValue">
+        <i :class="togglerIcon" id="eye" @click="switchVisibility"></i>
             </div>
-            <div class="explanation">{{ extractTextFromJson(text.login.explanation, props.language) }}</div>
-            <button class="login" v-on:click="$emit('login', passwordValue)">
+      <!-- <div class="explanation">{{ extractTextFromJson(text.login.explanation, props.language) }}</div> -->
+      <button class="login" v-on:click="$emit('login', passwordValue, voterID)">
                 {{ extractTextFromJson(text.login.loginButton, props.language) }}
             </button>
         </form>
@@ -31,7 +35,7 @@ const props = defineProps<{
 
 <script lang="ts">
 export default {
-  data () {
+  data() {
     return {
       password: '',
       passwordFieldType: 'password',
@@ -39,7 +43,7 @@ export default {
     }
   },
   methods: {
-    switchVisibility () {
+    switchVisibility() {
       this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
       this.togglerIcon = this.togglerIcon === 'fa fa-eye' ? 'fa fa-eye-slash' : 'fa fa-eye'
     }
