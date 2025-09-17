@@ -2,7 +2,7 @@
     "header": {
         "title": {
             "default": "Website to check your ballot",
-            "value": { "DE": "Webseit zur Stimmüberprüfung" }
+            "value": { "DE": "Webseite zur Stimmüberprüfung" }
         },
         "election": {
             "default": "Election Title: ",
