@@ -51,11 +51,11 @@ onMounted(() => {
     <div class="list">
         <div class="binaryListVote" v-if="props.candidateList.maxVotesForList == 1">
             <label for="listVote">{{ extractTextFromJson(text.ballot.listVote, props.language) }}</label>
-            <input type="checkbox" name="listVote" :checked="props.result[0]==1"/>
+            <input class="checkbox" type="checkbox" name="listVote" :checked="props.result[0]==1"/>
         </div>
         <div class="listVote" v-if="props.candidateList.maxVotesForList > 1">
             <label for="listVote">{{ extractTextFromJson(text.ballot.listVote, props.language) }}</label>
-            <input type="checkbox" name="listVote" value="props.result[0]"/>
+            <input class="checkbox" type="checkbox" name="listVote" value="props.result[0]"/>
         </div>
     </div>
     <div class="candidates" v-if="rendered">
@@ -80,19 +80,20 @@ onMounted(() => {
 .title {
   text-align: left;
   margin:0;
-  background: #444;
+  background: #4664AA;
   padding: 2pt 6pt;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #4664AA;
   height: fit-content;
   color: #fff;
+  border-radius: 0pt 8pt 0pt 8pt;
 }
 
 .id {
   text-align: left;
   margin: 0;
-  background: #444;
+  background: #4664AA;
   padding: 2pt 6pt;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #4664AA;
   height: fit-content;
   color: #fff;
 }

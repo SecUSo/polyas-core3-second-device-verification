@@ -162,7 +162,7 @@ async function downloadPDF (): Promise<void> {
   margin: 36pt 0;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   border: solid 1px;
-  border-radius: 3pt;
+  border-radius: 0pt 8pt 0pt 8pt;;
 }
 
 .logo {

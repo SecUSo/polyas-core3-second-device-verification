@@ -82,6 +82,7 @@ function onInvalidCheck() {
   padding: 2pt 6pt;
   border-bottom: 1px solid #ddd;
   display: flex;
+  border-radius: 0pt 8pt 0pt 8pt;
   #left {
     width: 10%;
     text-align: left;
@@ -110,7 +111,7 @@ function onInvalidCheck() {
   margin-bottom: 10pt;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   border: solid 1px;
-  border-radius: 3pt;
+  border-radius: 0pt 8pt 0pt 8pt;
 }
 
 .invalid {
@@ -123,5 +124,9 @@ function onInvalidCheck() {
 
 .contentBelow {
   margin-left: 10pt;
+}
+
+[type=checkbox] {
+  accent-color: #404040;
 }
 </style>

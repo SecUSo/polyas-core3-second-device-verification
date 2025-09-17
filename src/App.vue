@@ -123,7 +123,7 @@ async function reset (): Promise<void> {
               :id="lang">{{ lang ? lang : "EN" }}</option>
           </select>
         </div>
-        <h2 v-if="title!=undefined">{{ extractTextFromJson(text.header.election, language) }}<em>{{ extractText(title, language)}}</em></h2>
+        <h2 v-if="title!=undefined"><em>{{ extractText(title, language)}}</em></h2>
       </div>
     </div>
     <div class="main">
@@ -154,14 +154,16 @@ async function reset (): Promise<void> {
       <a href="https://github.com/kastel-security/polyas-core3-second-device-verification" id="toollink">
         Individual verifiability tool
       </a> 
-      {{ extractTextFromJson(text.footer.acknowledgement, language) }}
+      {{ extractTextFromJson(text.footer.cooperation, language) }}
       <span>
         <a href="https://formal.kastel.kit.edu/~beckert/" target="_blank" rel="noopener noreferrer">Prof. Dr. Bernhard Beckert</a>, 
         <a href="https://crypto.iti.kit.edu/head_of_institute.php" target="_blank" rel="noopener noreferrer">Prof. Dr. Jörn Müller-Quade</a>,
         <a href="https://secuso.aifb.kit.edu/Team_Volkamer.php" target="_blank" rel="noopener noreferrer">Prof. Dr. Melanie Volkamer</a> & 
         <a href="https://spiecker.jura.uni-koeln.de/prof-dr-indra-spiecker" target="_blank" rel="noopener noreferrer">Prof. Dr. Indra Spiecker</a>
-        </span><span><a href="https://github.com/kastel-security/polyas-core3-second-device-verification" id="toollink">Polyas-Verifier</a>
-      &copy; 2024&puncsp;<a href="mailto:udqps@student.kit.edu">Christoph Niederbudde</a>, <a href="https://formal.kastel.kit.edu/~kirsten/">Michael Kirsten</a>.
+      </span>
+      <span>
+        <a href="https://github.com/kastel-security/polyas-core3-second-device-verification" id="toollink">Polyas-Verifier</a>
+        {{ extractTextFromJson(text.footer.acknowledgement, language) }} &copy; 2024&puncsp;<a href="mailto:udqps@student.kit.edu">Christoph Niederbudde</a>, <a href="https://formal.kastel.kit.edu/~kirsten/">Michael Kirsten</a>.
       </span>
     </div>
   </div>
@@ -195,7 +197,7 @@ h2 {
   font-weight: 100;
   text-align: center;
   padding: 15px 5%;
-  background-color: #199865;
+  background-color: #404040;
   color: white;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   display: flex;
@@ -203,7 +205,6 @@ h2 {
   align-items: center;
   margin-top: auto;
   position: relative;
-
 }
 
 #toollink {

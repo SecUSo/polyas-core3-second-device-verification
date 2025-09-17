@@ -15,6 +15,10 @@
     },
     "footer": {
         "acknowledgement": {
+            "default": "by KASTEL Security Research Labs at Karlsruhe Institute of Technology (KIT)",
+            "value": { "DE": "von den KASTEL-Sicherheitsforschungslaboren am Karlsruher Institut für Technologie (KIT)" }
+        },
+        "cooperation": {
             "default": "- a cooperation of the chairs of",
             "value": { "DE": "- eine Kooperation der Lehrstühle von" }
         }
