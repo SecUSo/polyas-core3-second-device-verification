@@ -6,10 +6,11 @@ import { extractText, extractTextFromJson } from './basic'
 import CandidateListView from './CandidateListView.vue'
 import ContentView from './ContentView.vue'
 import text from './elements/text.json'
+import Modal from './Modal.vue'
 
 const listResults = ref(new Map<string, Uint8Array>())
 const rendered = ref(false)
-
+const isModalVisible = ref(false);
 const props = defineProps<{
   ballot: Core3StandardBallot
   result: Uint8Array
@@ -28,12 +29,10 @@ onMounted(() => {
   }
   rendered.value = true
 })
-function onInvalidCheck() {
-  alert(extractTextFromJson(text.verified.onChangePopup, props.language));
-}
 </script>
 
 <template>
+    <Modal v-model="isModalVisible"><p>{{ extractTextFromJson(text.verified.onChangePopup, props.language) }}</p></Modal>
     <div id="title">
         <div id="left">
             <!--<h4>{{ props.ballot.id }}</h4>-->
@@ -62,7 +61,7 @@ function onInvalidCheck() {
     </div>
   </div>
     <div class="invalid" v-if="ballot.showInvalidOption">
-        <input type="checkbox" name="check" :checked="props.result[0]==1" v-on:click="onInvalidCheck"/>
+        <input type="checkbox" name="check" :checked="props.result[0]==1" v-on:click="isModalVisible = true"/>
         <label for="check">{{ extractTextFromJson(text.ballot.invalidOption, props.language) }}</label>
     </div>
     <div class="abstain" v-if="ballot.showAbstainOption">
