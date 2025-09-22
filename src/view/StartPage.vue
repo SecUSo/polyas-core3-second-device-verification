@@ -13,9 +13,9 @@ const props = defineProps<{
 <template>
     <div class="start">
     <div class="explanation">{{ extractTextFromJson(text.login.textID, props.language) }}</div>
-    <p><b>{{ extractTextFromJson(text.login.voterId, props.language) }}</b></p>
+    <h4>{{ extractTextFromJson(text.login.voterId, props.language) }}</h4>
     <div class="password">
-      <input id="enter" class="input" maxlength="8" autocomplete="off" v-model="voterID"/>
+      <input class="input" maxlength="8" autocomplete="off" v-model="voterID"/>
     </div>
     <div class="explanation">{{ extractTextFromJson(text.login.textPW, props.language) }}</div>
         <h4>{{ extractTextFromJson(text.login.loginReq, props.language) }}</h4>
@@ -78,9 +78,10 @@ export default {
   margin-bottom: 4%;
 }
 
-#enter {
+.input {
   width: 50%;
   text-align: center;
+  font-size: 14pt;
 }
 
 #eye {
