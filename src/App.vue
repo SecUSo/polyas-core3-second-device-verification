@@ -33,8 +33,8 @@ onMounted(async () => {
   env.fingerprint = (import.meta as any).env.VITE_ELECTION_FINGERPRINT
   console.log('Fingerprint: ', env.fingerprint)
   const urlParams = new URLSearchParams(window.location.search)
-  languages = ['DE', 'EN', undefined]
-  language.value = 'EN'
+  languages = ['DE', undefined]
+  language.value = 'DE'
   await loadData()
   if (!urlParams.has('c') || !urlParams.has('vid') || !urlParams.has('nonce')) {
     error.value = new ResponseBeanError(ErrorType.PARAMS)
@@ -50,7 +50,6 @@ async function loadData (): Promise<void> {
   verificationtool.value = new Verificationtool()
   const electionData = await verificationtool.value.loadElectionData()
   if (electionData.status === ResponseBean.okStatus) {
-    language.value = undefined
     languages = [...(electionData as ResponseBeanOk<ElectionData>).value.languages, undefined]
     title.value = (electionData as ResponseBeanOk<ElectionData>).value.title
     state.value = State.LOGIN
