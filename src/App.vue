@@ -6,6 +6,7 @@ import text from './view/elements/text.json'
 import { I18n, type Language } from './classes/basics'
 import { extractText, extractTextFromJson, State } from './view/basic'
 import VerifiedView from './view/VerifiedView.vue'
+import SuccessPage from './view/SuccessPage.vue'
 import { ErrorType } from './main/error'
 import { ResponseBean, ResponseBeanError, type ResponseBeanOk } from './main/communication'
 import ErrorView from './view/ErrorView.vue'
@@ -60,6 +61,10 @@ async function loadData (): Promise<void> {
   }
 }
 
+async function confirm(): Promise<void> {
+  state.value = State.SUCCESS
+}
+
 async function login (password: string): Promise<void> {
   if (verificationtool.value === undefined || voterId.value === undefined || nonce.value === undefined || c.value === undefined) {
     error.value = new ResponseBeanError(ErrorType.OTHER)
@@ -106,23 +111,28 @@ async function reset (): Promise<void> {
 
 <template>
   <div id="all">
-    <div id="header">
-      <div id="left">
+    <div id="header-top">
+      <div class="logos">
         <a href="https://www.kit.edu/english/"><img class="kitlogo" src="./view/elements/kit_en.svg"/></a>
-        <a href="https://kastel-labs.de/"><img class="kastellogo" src="./view/elements/kastel.png"/></a>
+        <a href="https://kastel-labs.de/"><img class="kastellogo" src="./view/elements/kastel.svg"/></a>
       </div>
-      <div id="center">
+      <div class="select">
+        <div id="symbol"><i class="fa fa-globe"></i></div>
+        <select class="selectButton"
+          v-model="language">
+          {{ language ? language : "default" }}
+          <option v-for="lang in languages"
+            :value="lang"
+            :key="lang"
+            :id="lang">{{ lang ? lang : "EN" }}</option>
+        </select>
+      </div>
+    </div>
+    <div id="header">
+      <div id="title">
         <h1>{{ extractTextFromJson(text.header.title, language) }}</h1>
-        <div class="select">
-          <div id="symbol">&#x1F310;</div><select class="selectButton"
-            v-model="language">
-            {{ language ? language : "default" }}
-            <option v-for="lang in languages"
-              :value="lang"
-              :key="lang"
-              :id="lang">{{ lang ? lang : "EN" }}</option>
-          </select>
-        </div>
+      </div>
+      <div class="election-title">
         <h2 v-if="title!=undefined"><em>{{ extractText(title, language)}}</em></h2>
       </div>
     </div>
@@ -136,7 +146,8 @@ async function reset (): Promise<void> {
       :loginResponse="loginResponse!"
       :result="result!"
       :language="language"
-        :receipt-text="receiptText!"
+      :receipt-text="receiptText!"
+      @confirm="()=> confirm()"
       />
       <ErrorView
       v-else-if="state==State.ERROR"
@@ -145,6 +156,10 @@ async function reset (): Promise<void> {
       :title="(title as I18n<string>)"
       :language="language"
         @reset="reset"
+      />
+      <SuccessPage 
+      v-else-if="state==State.SUCCESS"
+      :language="language"
       />
       <div v-else class="loading">
         <img src="./view/elements/spinner-1s-200px.svg"/>
@@ -177,18 +192,34 @@ body {
 
 <style scoped>
 
-h1 {
-  font-size: clamp(1.75rem, 4vw, 3.5rem);
+#header {
+  max-width: 800pt;
+  padding: 0 12pt;
+  margin: auto auto 4rem auto;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-h2 {
-  font-size: clamp(1.25rem, 3vw, 2.5rem);
-}
-#header {
-  height: 100%;
-  width: 100%;
+#header-top {
   display: flex;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  justify-content: space-between;
+  align-items: center; 
+  margin-bottom: 15px;  
+  border-bottom: 1px solid #4664aa;
+}
+
+#title {
+  text-align: center;
+}
+
+.election-title {
+  text-align: center;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 5pt;
+    padding-left: 5pt;
 }
 
 #footer {
@@ -199,7 +230,7 @@ h2 {
   padding: 15px 5%;
   background-color: #404040;
   color: white;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: 12pt;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,7 +243,7 @@ h2 {
   font-size: 18px;
   font-weight: 600;
   font-variant: small-caps;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: 14pt;
   color: white;
   text-decoration: none;
 }
@@ -226,40 +257,17 @@ h2 {
   color: white;
 }
 
-#left {
-  width: 20%;
-}
-
-#center {
-  width: 60%;
-  text-align: center;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-#right {
-  width: 20%;
-  text-align: right;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
 #symbol {
   margin: 0.1em;
+  color: #404040;
 }
 
 .kitlogo {
-  margin-left: 32.98%;
-  margin-top: 1.22rem;
-  width: 50.85%;
-  min-height: 0%;
-  min-width: 35%;
+  height: 30pt;
 }
 
 .kastellogo {
-  margin-left: 30%;
-  margin-top: .5rem;
-  width: 50%;
-  min-height: 0%;
-  min-width: 55%;
+  height: 50pt;
 }
 
 .select {
@@ -271,9 +279,6 @@ h2 {
     margin-right: 7%;
     background-color: inherit;
   }
-  margin-left: auto;
-  margin-right: -8%;
-  margin-top: -4.45%;
 }
 
 .selectbck {

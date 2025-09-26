@@ -109,8 +109,22 @@
             "value": {
                 "DE": "Sie können Ihre Stimmabgabe nichtmehr ändern. Die Änderung wird nur lokal bei Ihnen angezeigt und hat keinen Einfluss auf Ihren abgegebenen Stimmzettel."
             }
+        },
+        "completeButton": {
+            "default": "Complete verification",
+            "value": { "DE": "Verifikation abschließen" }
         }
 
+    },
+     "successPage": {
+        "successHeader": {
+            "default": "You have completed the verification of your ballot!",
+            "value": { "DE": "Sie haben die Verifikation abgeschlossen!" }
+        },
+        "successText": {
+            "default": "Thank you for verifiying your ballot. You can now close this browser window.",
+            "value": { "DE": "Vielen Dank für die Verifikation Ihrer Stimmabgabe. Sie können diese Browserfenster jetzt schließen." }
+        }
     },
     "ballot": {
         "invalidOption": {

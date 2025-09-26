@@ -68,6 +68,7 @@ async function downloadPDF (): Promise<void> {
 </script>
 
 <template>
+  <div id="verifiedView">
     <div class="logo" v-if="props.loginResponse.logo">
         <img class="content" :src="getImgUrl(props.loginResponse.logo!)" ref="test"/>
     </div>
@@ -114,8 +115,10 @@ async function downloadPDF (): Promise<void> {
     <div class="download">
         <text class="text">{{ extractTextFromJson(text.verified.downloadText, props.language) }}</text>
         <br>
-        <div class="buttonOuter"><button class="pressDownload" v-on:click="downloadPDF">{{ extractTextFromJson(text.verified.download, props.language) }}</button></div>
+        <div class="buttonOuter"><button class="buttonInner" v-on:click="downloadPDF">{{ extractTextFromJson(text.verified.download, props.language) }}</button></div>
+        <div class="buttonOuter"><button id="completeButton" v-on:click="$emit('confirm')" class="buttonInner">{{ extractTextFromJson(text.verified.completeButton, props.language) }}</button></div>
     </div>
+</div>
 </template>
 
 <style scoped>
@@ -125,6 +128,11 @@ async function downloadPDF (): Promise<void> {
 
 .verified {
   color: #0a0;
+}
+
+#verifiedView {
+  margin: auto;
+  max-width: 600pt;
 }
 
 .check {
@@ -182,7 +190,6 @@ async function downloadPDF (): Promise<void> {
 .download {
   text-align: justify;
   max-width: 600pt;
-  padding: 0 12pt;
   margin: auto auto 8rem auto;
   line-height: 1.5;
 }
@@ -191,13 +198,22 @@ async function downloadPDF (): Promise<void> {
   text-align: center;
 }
 
-.pressDownload {
+.buttonInner {
   text-align: center;
-  width: 51.5%;
+  width: 100%;
   font-weight: bold;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 5pt;
+  padding-bottom: 5pt;
   margin-top: 4%;
+  font-size: 12pt;
+  border: 1px solid #4664aa;
+  border-radius: 5pt;
+  background-color: #dddddd;
+}
+
+#completeButton {
+  background-color: #4664aa;
+  color:white;
 }
 </style>
 ../main/constants

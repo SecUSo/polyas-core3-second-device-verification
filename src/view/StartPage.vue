@@ -11,26 +11,26 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div class="start">
+  <div class="start">
     <div class="explanation">{{ extractTextFromJson(text.login.textID, props.language) }}</div>
     <h4>{{ extractTextFromJson(text.login.voterId, props.language) }}</h4>
-    <div class="password">
-      <input class="input" maxlength="8" autocomplete="off" v-model="voterID"/>
-    </div>
-    <div class="explanation">{{ extractTextFromJson(text.login.textPW, props.language) }}</div>
-        <h4>{{ extractTextFromJson(text.login.loginReq, props.language) }}</h4>
     <form @submit.prevent="$emit('login', passwordValue, voterID)">
-            <div class="password">
+      <div class="password">
+        <input class="input" maxlength="8" autocomplete="off" v-model="voterID"/>
+      </div>
+      <div class="explanation">{{ extractTextFromJson(text.login.textPW, props.language) }}</div>
+      <h4>{{ extractTextFromJson(text.login.loginReq, props.language) }}</h4>
+      <div class="password">
         <input id="enter" class="input" maxlength="6" autocomplete="new-password one-time-code"
           :type="passwordFieldType" v-model="passwordValue">
         <i :class="togglerIcon" id="eye" @click="switchVisibility"></i>
-            </div>
+      </div>
       <!-- <div class="explanation">{{ extractTextFromJson(text.login.explanation, props.language) }}</div> -->
       <button class="login" v-on:click="$emit('login', passwordValue, voterID)">
-                {{ extractTextFromJson(text.login.loginButton, props.language) }}
-            </button>
-        </form>
-    </div>
+        {{ extractTextFromJson(text.login.loginButton, props.language) }}
+      </button>
+    </form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -79,24 +79,37 @@ export default {
 }
 
 .input {
-  width: 50%;
-  text-align: center;
-  font-size: 14pt;
+  width: 100%;
+  font-size: 12pt;
+  border-radius: 5pt;
+  border-width: 1px;
+  padding: 5pt;
+  box-sizing: border-box;
 }
 
 #eye {
   position: absolute;
-  margin-top: .25%;
-  margin-left: 0.3em;
+  margin-top: 7.5pt;
+  margin-left: -20pt;
   cursor: pointer;
-  color: gray;
+  color: #404040;
+  size: 12pt;
 }
 
 .login {
-  width: 51.5%;
+  width: 100%;
+  padding-top: 5pt;
+  padding-bottom: 5pt;
   font-weight: bold;
-  padding-top: 1%;
-  padding-bottom: 1%;
   margin-top: 4%;
+  font-size: 12pt;
+  background-color: #4664aa;
+  color:white;
+  border-radius: 5pt;
+  border: 1px solid #4664aa;
+}
+
+h4 {
+  text-align: left;
 }
 </style>
